@@ -18,6 +18,7 @@ const DEFAULT_STATE = {
   achievements: [],        // achievement IDs
   inventory: [],           // [{ id, count, type }]
   userName: 'Learner',
+  autoPlayAudio: false,
 };
 
 class Store {
@@ -214,6 +215,11 @@ class Store {
 
   setUserName(name) {
     this._state.userName = name;
+    this._save();
+  }
+
+  setAutoPlayAudio(enabled) {
+    this._state.autoPlayAudio = enabled;
     this._save();
   }
 

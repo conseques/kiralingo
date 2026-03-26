@@ -1,15 +1,20 @@
 import { t } from '../i18n.js';
 import { renderHeader, renderNav } from '../components/nav.js';
-import { speak } from '../utils/audio.js';
+import { speak, stop } from '../utils/audio.js';
 import { store } from '../store.js';
 import { getKiraAIResponse } from '../utils/gemini.js';
 
-// Simple markdown parser for bold and code
-function parseMarkdown(text) {
+// Simple text cleaner to remove markdown artifacts per user request
+function cleanText(text) {
   return text
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/`(.*?)`/g, '<code>$1</code>')
-    .replace(/\n/g, '<br/>');
+    .replace(/^#+\s/gm, '') // Remove headers (#)
+    .replace(/\*\*/g, '')   // Remove bold symbols (**)
+    .replace(/\*/g, '')     // Remove italic symbols (*)
+    .replace(/__/g, '')     // Remove underline proxies (__)
+    .replace(/`/g, '')      // Remove code symbols (`)
+    .replace(/^- /gm, '')   // Remove list dashes (-)
+    .replace(/\[|\]/g, '')  // Remove brackets
+    .trim();
 }
 
 export function renderKira() {
@@ -23,7 +28,7 @@ export function renderKira() {
   content.className = 'page-content';
   content.style.cssText = 'padding:1.5rem; display:flex; flex-direction:column; min-height:calc(100vh - 12rem);';
 
-  // Kira Intro & Header
+  // Kira Intro & Global Controls
   const introContainer = document.createElement('div');
   introContainer.style.cssText = 'display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem;';
   
@@ -40,44 +45,93 @@ export function renderKira() {
   `;
   introContainer.appendChild(intro);
 
+  const controls = document.createElement('div');
+  controls.style.cssText = 'display:flex; gap:0.75rem; align-items:center;';
+
+  // Auto-audio toggle
+  const audioToggle = document.createElement('button');
+  audioToggle.className = 'material-symbols-outlined';
+  audioToggle.style.cssText = `cursor:pointer; background:none; border:none; transition: color 0.2s; ${store.state.autoPlayAudio ? 'color:var(--primary);' : 'color:var(--on-surface-variant);'}`;
+  audioToggle.textContent = store.state.autoPlayAudio ? 'volume_up' : 'volume_off';
+  audioToggle.title = 'Auto-play audio';
+  audioToggle.onclick = () => {
+    const newState = !store.state.autoPlayAudio;
+    store.setAutoPlayAudio(newState);
+    audioToggle.textContent = newState ? 'volume_up' : 'volume_off';
+    audioToggle.style.color = newState ? 'var(--primary)' : 'var(--on-surface-variant)';
+  };
+  controls.appendChild(audioToggle);
+
+  // Clear history
   const clearBtn = document.createElement('button');
   clearBtn.className = 'material-symbols-outlined';
   clearBtn.style.cssText = 'color:var(--on-surface-variant); cursor:pointer; background:none; border:none;';
   clearBtn.textContent = 'delete_sweep';
+  clearBtn.title = 'Clear history';
   clearBtn.onclick = () => {
     store.clearKiraHistory();
     chatArea.innerHTML = '';
     addMessage("History cleared! ✨ How can I help you today?", true, false);
   };
-  introContainer.appendChild(clearBtn);
+  controls.appendChild(clearBtn);
 
+  introContainer.appendChild(controls);
   content.appendChild(introContainer);
 
   // Chat Area
   const chatArea = document.createElement('div');
   chatArea.id = 'kira-chat-area';
-  chatArea.style.cssText = 'flex:1; display:flex; flex-direction:column; gap:1rem; overflow-y:auto; padding-bottom:2rem; max-height:50vh;';
+  chatArea.style.cssText = 'flex:1; display:flex; flex-direction:column; gap:1.25rem; overflow-y:auto; padding-bottom:2rem; max-height:55vh;';
   content.appendChild(chatArea);
 
   // Logic: Add Message
   function addMessage(text, isKira = false, save = true) {
+    const msgWrapper = document.createElement('div');
+    msgWrapper.className = 'animate-fade-in-up';
+    msgWrapper.style.cssText = `display:flex; flex-direction:column; gap:0.25rem; ${isKira ? 'align-self:flex-start;' : 'align-self:flex-end;'}`;
+    
+    // Clean text per user request
+    const cleanedText = isKira ? cleanText(text) : text;
+
     const msg = document.createElement('div');
-    msg.className = 'animate-fade-in-up';
-    msg.style.cssText = `max-width:85%; padding:1rem; border-radius:var(--radius-md); font-size:0.95rem; line-height:1.5; ${
+    msg.style.cssText = `max-width:90%; padding:1rem; border-radius:var(--radius-md); font-size:0.95rem; line-height:1.5; ${
       isKira 
-        ? 'align-self:flex-start; background:var(--secondary-container); color:var(--on-secondary-container); border-bottom-left-radius:0;' 
-        : 'align-self:flex-end; background:var(--primary); color:white; border-bottom-right-radius:0;'
+        ? 'background:var(--secondary-container); color:var(--on-secondary-container); border-bottom-left-radius:0;' 
+        : 'background:var(--primary); color:white; border-bottom-right-radius:0;'
     }`;
     
+    // Convert newlines to breaks
+    msg.innerHTML = cleanedText.replace(/\n/g, '<br/>');
+    msgWrapper.appendChild(msg);
+
+    // AI Controls (Voice Play/Stop)
     if (isKira) {
-      msg.innerHTML = parseMarkdown(text);
-      // Only speak new messages, not history load
-      if (save) speak(text);
-    } else {
-      msg.textContent = text;
+      const msgTools = document.createElement('div');
+      msgTools.style.cssText = 'display:flex; gap:0.5rem; margin-top:0.25rem; opacity:0.8;';
+      
+      const playBtn = document.createElement('button');
+      playBtn.className = 'material-symbols-outlined';
+      playBtn.style.cssText = 'font-size:1.1rem; cursor:pointer; color:var(--primary);';
+      playBtn.textContent = 'volume_up';
+      playBtn.onclick = () => speak(cleanedText, store.state.targetLang === 'no' ? 'nb-NO' : 'en-US');
+
+      const stopBtn = document.createElement('button');
+      stopBtn.className = 'material-symbols-outlined';
+      stopBtn.style.cssText = 'font-size:1.1rem; cursor:pointer; color:var(--error);';
+      stopBtn.textContent = 'stop_circle';
+      stopBtn.onclick = () => stop();
+
+      msgTools.appendChild(playBtn);
+      msgTools.appendChild(stopBtn);
+      msgWrapper.appendChild(msgTools);
+
+      // Auto-play if enabled
+      if (save && store.state.autoPlayAudio) {
+        speak(cleanedText, store.state.targetLang === 'no' ? 'nb-NO' : 'en-US');
+      }
     }
 
-    chatArea.appendChild(msg);
+    chatArea.appendChild(msgWrapper);
     chatArea.scrollTop = chatArea.scrollHeight;
   }
 
@@ -88,13 +142,22 @@ export function renderKira() {
       addMessage(h.parts[0].text, h.role === 'model', false);
     });
   } else {
-    addMessage("Hello! I'm Kira, your AI study buddy. Ask me anything about English! ✨", true, false);
+    const welcome = store.state.targetLang === 'no' 
+      ? "Hei! Jeg er Kira, din AI-studiekamerat. Spør meg om hva som helst på norsk! ✨"
+      : "Hello! I'm Kira, your AI study buddy. Ask me anything about English! ✨";
+    addMessage(welcome, true, false);
   }
 
   // Suggested Prompts
   const suggestions = document.createElement('div');
   suggestions.style.cssText = 'display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.5rem;';
-  const prompts = [
+  
+  const prompts = store.state.targetLang === 'no' ? [
+    { text: "Sjekk grammatikken min", icon: 'spellcheck' },
+    { text: "Forklar 'Passiv form'", icon: 'help_outline' },
+    { text: "Øv på fortid", icon: 'history' },
+    { text: "Fortell meg en spøk", icon: 'sentiment_very_satisfied' },
+  ] : [
     { text: "Check my grammar", icon: 'spellcheck' },
     { text: "Explain 'Passive Voice'", icon: 'help_outline' },
     { text: "Practice past tense", icon: 'history' },
@@ -118,7 +181,7 @@ export function renderKira() {
   
   const input = document.createElement('input');
   input.type = 'text';
-  input.placeholder = t('kira.placeholder') || 'Ask me anything...';
+  input.placeholder = t('kira.placeholder') || (store.state.targetLang === 'no' ? 'Spør meg om hva som helst...' : 'Ask me anything...');
   input.style.cssText = 'flex:1; background:transparent; border:none; outline:none; color:var(--on-surface); font-size:1rem;';
   
   const sendBtn = document.createElement('button');
@@ -140,6 +203,9 @@ export function renderKira() {
     sendBtn.disabled = true;
     sendBtn.style.opacity = '0.5';
     
+    // Stop ongoing speech when user sends a new message
+    stop();
+
     addMessage(text, false);
 
     // AI Response

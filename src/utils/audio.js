@@ -65,3 +65,12 @@ export function speak(text, lang = 'en-US', rate = 0.9) {
 
   window.speechSynthesis.speak(utterance);
 }
+
+/**
+ * Stops any ongoing speech.
+ */
+export function stop() {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+  }
+}
