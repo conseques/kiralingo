@@ -3,6 +3,8 @@
  * Handles high-quality voice selection and speech synthesis.
  */
 
+import { store } from '../store.js';
+
 let voices = [];
 
 // Initialize voices
