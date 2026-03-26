@@ -12,6 +12,7 @@ const DEFAULT_STATE = {
   selectedUnitId: null,      // for jumping to specific units
   currentUnit: 0,
   currentLesson: 0,
+  kiraHistory: [],         // [{ role: 'user' | 'model', parts: [{ text: string }] }]
   vocabulary: {},          // { wordId: { mastery: 0-3, lastPracticed: date } }
   achievements: [],        // achievement IDs
   inventory: [],           // [{ id, count, type }]
@@ -187,6 +188,21 @@ class Store {
 
   clearSelectedUnit() {
     this._state.selectedUnitId = null;
+    this._save();
+  }
+
+  addKiraMessage(role, text) {
+    if (!this._state.kiraHistory) this._state.kiraHistory = [];
+    this._state.kiraHistory.push({ role, parts: [{ text }] });
+    // Keep only last 20 messages for performance
+    if (this._state.kiraHistory.length > 20) {
+      this._state.kiraHistory.shift();
+    }
+    this._save();
+  }
+
+  clearKiraHistory() {
+    this._state.kiraHistory = [];
     this._save();
   }
 
