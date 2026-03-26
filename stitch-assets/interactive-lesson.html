@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-container": "#6b3c00",
+              "secondary": "#006590",
+              "on-tertiary-fixed": "#2d1600",
+              "surface": "#fbf9f8",
+              "on-secondary-container": "#004666",
+              "secondary-fixed": "#c8e6ff",
+              "on-primary-container": "#215100",
+              "primary-fixed": "#96fb59",
+              "inverse-primary": "#7bde3e",
+              "surface-container": "#efeded",
+              "primary-fixed-dim": "#7bde3e",
+              "on-background": "#1b1c1c",
+              "on-primary-fixed-variant": "#215100",
+              "outline": "#707a66",
+              "outline-variant": "#bfcab2",
+              "surface-container-low": "#f5f3f3",
+              "tertiary-fixed-dim": "#ffb872",
+              "secondary-fixed-dim": "#88ceff",
+              "on-error": "#ffffff",
+              "surface-container-highest": "#e4e2e2",
+              "on-secondary-fixed-variant": "#004c6e",
+              "on-primary-fixed": "#092100",
+              "inverse-on-surface": "#f2f0f0",
+              "surface-dim": "#dbd9d9",
+              "tertiary-container": "#ffa035",
+              "background": "#fbf9f8",
+              "primary-container": "#6bcc2d",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-fixed-variant": "#6a3b00",
+              "on-secondary-fixed": "#001e2e",
+              "on-secondary": "#ffffff",
+              "on-surface": "#1b1c1c",
+              "inverse-surface": "#303030",
+              "on-tertiary": "#ffffff",
+              "on-primary": "#ffffff",
+              "on-error-container": "#93000a",
+              "secondary-container": "#2fb8ff",
+              "tertiary-fixed": "#ffdcbf",
+              "surface-variant": "#e4e2e2",
+              "surface-tint": "#2e6c00",
+              "primary": "#2e6c00",
+              "surface-container-high": "#eae8e7",
+              "surface-bright": "#fbf9f8",
+              "error-container": "#ffdad6",
+              "on-surface-variant": "#404a38",
+              "tertiary": "#8c5000",
+              "error": "#ba1a1a"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Be Vietnam Pro"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-kira {
+        background: rgba(47, 184, 255, 0.15);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .kira-gradient-bg {
+        background: linear-gradient(135deg, #2e6c00 0%, #6bcc2d 100%);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased min-h-screen flex flex-col">
+<!-- Top Navigation Anchor (Task-Focused: No Shell per rule, only header) -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-20 bg-surface">
+<div class="flex items-center gap-4 w-full max-w-4xl mx-auto">
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+<!-- Progress Bar -->
+<div class="flex-grow h-4 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full kira-gradient-bg rounded-full w-1/2 shadow-[inset_0_1px_2px_rgba(255,255,255,0.3)]"></div>
+</div>
+<div class="flex items-center gap-2 px-3 py-1 bg-surface-container-low rounded-full">
+<span class="text-tertiary font-bold">12 🔥</span>
+</div>
+</div>
+</header>
+<main class="flex-grow pt-24 pb-32 px-6 w-full max-w-2xl mx-auto flex flex-col">
+<!-- Kira Guidance Section (Asymmetric Editorial Layout) -->
+<section class="relative mt-8 mb-12 flex items-end gap-4">
+<div class="relative flex-shrink-0 mb-[-1rem]">
+<div class="w-32 h-32 md:w-40 md:h-40 overflow-hidden rounded-full bg-secondary-container/20 border-4 border-surface-container-lowest">
+<img alt="Kira" class="w-full h-full object-cover" data-alt="Close-up portrait of a friendly young woman with a warm smile, wearing a modern green headset, studio lighting with soft bokeh background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB40Jey2T5g3lZBeiacd8FPPlmnCI12TXZjI5znoc8ecj_OQD7zRk9nNi7rmqQG4gHyVmSDN5SjdI-ty7jIlvVF7bDWOH4I-ZKjAbKb7wC4RHrbZse4eKX0CRK3ZQgdRfYyhePZWmRs_tIMQ6WR3erotl1FWhyaQ6OxwD32Wjk7rw1k9V6l5Hq60ssIc-ckThI4K9E9rg_6cp0vn8HqURuzYghqoJOsc3maKb3Rt4eoW1cPQZbiurMtUB_bjeu5MIxGWpnUPNsVSTHd"/>
+</div>
+<!-- Kira's badge -->
+<div class="absolute -bottom-1 -right-1 bg-primary text-white p-2 rounded-full shadow-lg">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+</div>
+<!-- Speech Bubble -->
+<div class="relative flex-grow glass-kira p-6 rounded-t-xl rounded-br-xl border border-secondary-container/20 shadow-sm">
+<p class="font-headline text-headline-md font-bold text-on-secondary-container leading-tight tracking-tight">
+                    How do you say "Good morning" in English?
+                </p>
+<!-- Tail -->
+<div class="absolute bottom-0 -left-3 w-4 h-4 glass-kira border-l border-b border-secondary-container/20" style="clip-path: polygon(100% 0, 0% 100%, 100% 100%);"></div>
+</div>
+</section>
+<!-- Construction Space -->
+<section class="flex-grow flex flex-col justify-center min-h-[180px]">
+<div class="w-full py-8 border-b-2 border-dashed border-outline-variant/30 flex flex-wrap gap-3 items-center justify-start min-h-[100px]">
+<!-- Placeholder for the user's built sentence -->
+<div class="flex flex-wrap gap-3">
+<!-- Example of a placed word -->
+<div class="bg-surface-container-lowest px-5 py-3 rounded-xl shadow-sm border-b-4 border-surface-container-highest font-headline font-semibold text-primary animate-in fade-in slide-in-from-bottom-2">
+                        Good
+                    </div>
+</div>
+</div>
+</section>
+<!-- Word Bank (Bento Style Tray) -->
+<section class="mt-8">
+<div class="flex flex-wrap justify-center gap-4">
+<button class="group bg-surface-container-lowest hover:bg-surface-container-low active:scale-95 transition-all px-6 py-4 rounded-xl shadow-sm border-b-4 border-surface-container-highest text-on-surface font-headline font-semibold text-lg">
+                    Hello
+                </button>
+<div class="opacity-30 cursor-not-allowed bg-surface-container px-6 py-4 rounded-xl border-b-4 border-surface-container-highest text-on-surface/20 font-headline font-semibold text-lg">
+                    Good
+                </div>
+<button class="group bg-surface-container-lowest hover:bg-surface-container-low active:scale-95 transition-all px-6 py-4 rounded-xl shadow-sm border-b-4 border-surface-container-highest text-on-surface font-headline font-semibold text-lg">
+                    Morning
+                </button>
+<button class="group bg-surface-container-lowest hover:bg-surface-container-low active:scale-95 transition-all px-6 py-4 rounded-xl shadow-sm border-b-4 border-surface-container-highest text-on-surface font-headline font-semibold text-lg">
+                    Night
+                </button>
+<button class="group bg-surface-container-lowest hover:bg-surface-container-low active:scale-95 transition-all px-6 py-4 rounded-xl shadow-sm border-b-4 border-surface-container-highest text-on-surface font-headline font-semibold text-lg">
+                    Evening
+                </button>
+</div>
+</section>
+</main>
+<!-- Bottom Action Bar -->
+<footer class="fixed bottom-0 left-0 w-full bg-surface-container-lowest p-6 flex justify-center items-center shadow-[0_-8px_40px_rgba(0,0,0,0.04)] border-t border-outline-variant/10">
+<div class="w-full max-w-2xl flex justify-between items-center gap-6">
+<button class="hidden md:flex items-center gap-2 font-headline font-bold text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">skip_next</span>
+                SKIP
+            </button>
+<button class="flex-grow md:flex-grow-0 md:min-w-[240px] kira-gradient-bg text-white py-4 rounded-2xl font-headline font-extrabold text-lg tracking-wider shadow-[0_4px_0_#215100] active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-3">
+                CHECK
+                <span class="material-symbols-outlined font-bold">check_circle</span>
+</button>
+</div>
+</footer>
+</body></html>

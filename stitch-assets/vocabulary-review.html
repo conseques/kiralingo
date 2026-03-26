@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kiralingo Vocabulary Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-gradient {
+            background: linear-gradient(135deg, #2e6c00 0%, #6bcc2d 100%);
+        }
+        .kira-glass {
+            background: rgba(47, 184, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        h1, h2, h3, .font-headline {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary-container": "#6b3c00",
+                        "secondary": "#006590",
+                        "on-tertiary-fixed": "#2d1600",
+                        "surface": "#fbf9f8",
+                        "on-secondary-container": "#004666",
+                        "secondary-fixed": "#c8e6ff",
+                        "on-primary-container": "#215100",
+                        "primary-fixed": "#96fb59",
+                        "inverse-primary": "#7bde3e",
+                        "surface-container": "#efeded",
+                        "primary-fixed-dim": "#7bde3e",
+                        "on-background": "#1b1c1c",
+                        "on-primary-fixed-variant": "#215100",
+                        "outline": "#707a66",
+                        "outline-variant": "#bfcab2",
+                        "surface-container-low": "#f5f3f3",
+                        "tertiary-fixed-dim": "#ffb872",
+                        "secondary-fixed-dim": "#88ceff",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e4e2e2",
+                        "on-secondary-fixed-variant": "#004c6e",
+                        "on-primary-fixed": "#092100",
+                        "inverse-on-surface": "#f2f0f0",
+                        "surface-dim": "#dbd9d9",
+                        "tertiary-container": "#ffa035",
+                        "background": "#fbf9f8",
+                        "primary-container": "#6bcc2d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#6a3b00",
+                        "on-secondary-fixed": "#001e2e",
+                        "on-secondary": "#ffffff",
+                        "on-surface": "#1b1c1c",
+                        "inverse-surface": "#303030",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#2fb8ff",
+                        "tertiary-fixed": "#ffdcbf",
+                        "surface-variant": "#e4e2e2",
+                        "surface-tint": "#2e6c00",
+                        "primary": "#2e6c00",
+                        "surface-container-high": "#eae8e7",
+                        "surface-bright": "#fbf9f8",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#404a38",
+                        "tertiary": "#8c5000",
+                        "error": "#ba1a1a"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Be Vietnam Pro"],
+                        "label": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-surface dark:bg-slate-900">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center overflow-hidden">
+<img alt="Kira Avatar" class="w-full h-full object-cover" data-alt="close-up 3d render of a friendly stylized green bird character with large expressive eyes and a soft glowing aura" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdIV92iGwbfmp53LdK8RRwcALeq_5SIPAzY6AvOFM8wDfM69GjcJ8CFBbTvw1JYqSvl5_x1L2oC4zv3i4gXF_WDvMF1iFZrcVVDt7ARLuSPjYEIrCDQLIJtfD5QCl95Y19xnFv1e06hrlqQHxaFc5Bfl8hUVJeIsdKFbTyecCXZMe6Zfo-7kZRLEjYAR8V79H5tFCuNboDmczed4tX5bMbuCRbb2uRi1xSEfk395v2yLszSt_TVHnMP3WimVTmnMECQikK5iRXIcwj"/>
+</div>
+<span class="font-plus-jakarta-sans text-headline-md font-bold tracking-tight text-primary dark:text-primary-container">Kiralingo</span>
+</div>
+<div class="flex items-center gap-2 px-4 py-1.5 bg-surface-container-high rounded-full hover:scale-105 transition-transform cursor-pointer">
+<span class="text-sm font-bold">12 🔥 450 💎</span>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-4xl mx-auto">
+<!-- Editorial Header Section -->
+<section class="mb-10 relative">
+<div class="absolute -top-6 -right-4 w-32 h-32 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[120px] text-primary">menu_book</span>
+</div>
+<h1 class="text-5xl font-extrabold tracking-tighter text-on-surface mb-2 font-headline">Vocabulary Library</h1>
+<p class="text-on-surface-variant text-lg max-w-md leading-relaxed">Master the building blocks of language with Kira's curated collections.</p>
+</section>
+<!-- Search & Filters -->
+<div class="space-y-6 mb-12">
+<!-- Search Bar -->
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-5 pl-14 pr-6 text-on-surface focus:ring-2 focus:ring-primary-container transition-all placeholder:text-on-surface-variant/50" placeholder="Search your words..." type="text"/>
+</div>
+<!-- Categories Chips -->
+<div class="flex gap-3 overflow-x-auto pb-2 no-scrollbar">
+<button class="px-6 py-2.5 editorial-gradient text-on-primary rounded-full font-bold shadow-md hover:scale-105 transition-all whitespace-nowrap">All Words</button>
+<button class="px-6 py-2.5 bg-surface-container-high text-on-surface rounded-full font-medium hover:bg-surface-container-highest transition-all whitespace-nowrap">Adjectives</button>
+<button class="px-6 py-2.5 bg-surface-container-high text-on-surface rounded-full font-medium hover:bg-surface-container-highest transition-all whitespace-nowrap">Verbs</button>
+<button class="px-6 py-2.5 bg-surface-container-high text-on-surface rounded-full font-medium hover:bg-surface-container-highest transition-all whitespace-nowrap">Nouns</button>
+<button class="px-6 py-2.5 bg-surface-container-high text-on-surface rounded-full font-medium hover:bg-surface-container-highest transition-all whitespace-nowrap">Phrases</button>
+</div>
+</div>
+<!-- Vocabulary Grid (Editorial Style) -->
+<div class="grid gap-4">
+<!-- Word Card: Adventure -->
+<div class="group bg-surface-container-lowest p-6 rounded-lg flex items-center justify-between hover:scale-[1.01] transition-all duration-300">
+<div class="flex items-center gap-6">
+<div class="w-12 h-12 rounded-2xl bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-weight="fill">landscape</span>
+</div>
+<div>
+<h3 class="text-xl font-bold font-headline group-hover:text-primary transition-colors">Adventure</h3>
+<p class="text-on-surface-variant">Aventura</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="px-3 py-1 bg-tertiary-container/20 text-on-tertiary-container text-xs font-bold rounded-full">NEW</span>
+<button class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-colors">
+<span class="material-symbols-outlined">volume_up</span>
+</button>
+</div>
+</div>
+<!-- Word Card: Serene -->
+<div class="group bg-surface-container-lowest p-6 rounded-lg flex items-center justify-between hover:scale-[1.01] transition-all duration-300">
+<div class="flex items-center gap-6">
+<div class="w-12 h-12 rounded-2xl bg-secondary-container/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-weight="fill">water_drop</span>
+</div>
+<div>
+<h3 class="text-xl font-bold font-headline group-hover:text-secondary transition-colors">Serene</h3>
+<p class="text-on-surface-variant">Sereno</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-colors">
+<span class="material-symbols-outlined">volume_up</span>
+</button>
+</div>
+</div>
+<!-- Kira's Insight Tip -->
+<div class="kira-glass p-8 rounded-xl my-6 border-l-4 border-secondary flex gap-6 items-start">
+<div class="w-16 h-16 rounded-full flex-shrink-0 bg-white/20 p-1">
+<img alt="Kira Insight" class="w-full h-full object-contain" data-alt="a cute green animated owl character winking and wearing glasses with a soft glowing background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvhYhAtbxapXxMyOfJGQmqEZY6RQKWhSTX-fATt0tVcH2-CH_ryaOc3lsi_GYGzVdhJM-YR5xNLU2bkv3KR0c1F_3wzAvVsWOGWGcFnocyVAnigy2PvtBTua37NX-rJG3w8P9x_LOg0X5NGzjR8R0x-BjnVWqxZuM5MUfL5idRz0J94jgZxa-O_bCa3yf44InrNaoVS6Rs-5P-EUIbrdMc068nR5JcqJzIxoZiM0exee4vdb_IC5FEyug5-vC-IWA1HD1phPsFb8fj"/>
+</div>
+<div>
+<h4 class="font-bold text-secondary text-lg font-headline">Kira's Insight</h4>
+<p class="text-on-surface leading-relaxed">"Serene" is an adjective used to describe someone who is calm and peaceful. Try using it in your next practice session!</p>
+</div>
+</div>
+<!-- Word Card: Explore -->
+<div class="group bg-surface-container-lowest p-6 rounded-lg flex items-center justify-between hover:scale-[1.01] transition-all duration-300">
+<div class="flex items-center gap-6">
+<div class="w-12 h-12 rounded-2xl bg-tertiary-container/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-weight="fill">explore</span>
+</div>
+<div>
+<h3 class="text-xl font-bold font-headline group-hover:text-tertiary transition-colors">Explore</h3>
+<p class="text-on-surface-variant">Explorar</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-colors">
+<span class="material-symbols-outlined">volume_up</span>
+</button>
+</div>
+</div>
+<!-- Word Card: Radiant -->
+<div class="group bg-surface-container-lowest p-6 rounded-lg flex items-center justify-between hover:scale-[1.01] transition-all duration-300">
+<div class="flex items-center gap-6">
+<div class="w-12 h-12 rounded-2xl bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-weight="fill">wb_sunny</span>
+</div>
+<div>
+<h3 class="text-xl font-bold font-headline group-hover:text-primary transition-colors">Radiant</h3>
+<p class="text-on-surface-variant">Radiante</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-colors">
+<span class="material-symbols-outlined">volume_up</span>
+</button>
+</div>
+</div>
+<!-- Word Card: Wanderlust -->
+<div class="group bg-surface-container-lowest p-6 rounded-lg flex items-center justify-between hover:scale-[1.01] transition-all duration-300">
+<div class="flex items-center gap-6">
+<div class="w-12 h-12 rounded-2xl bg-secondary-container/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-weight="fill">flight_takeoff</span>
+</div>
+<div>
+<h3 class="text-xl font-bold font-headline group-hover:text-secondary transition-colors">Wanderlust</h3>
+<p class="text-on-surface-variant">Deseo de viajar</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-colors">
+<span class="material-symbols-outlined">volume_up</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-surface-container-lowest dark:bg-slate-800/90 rounded-t-3xl shadow-[0_-4px_24px_rgba(0,0,0,0.06)]">
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-5 py-1 transition-all active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-plus-jakarta-sans text-[10px] font-medium uppercase tracking-wider">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container/20 text-primary dark:text-primary-container rounded-2xl px-5 py-1 transition-all active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">exercise</span>
+<span class="font-plus-jakarta-sans text-[10px] font-bold uppercase tracking-wider">Practice</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-5 py-1 transition-all active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined mb-1">leaderboard</span>
+<span class="font-plus-jakarta-sans text-[10px] font-medium uppercase tracking-wider">Ranks</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-5 py-1 transition-all active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-plus-jakarta-sans text-[10px] font-medium uppercase tracking-wider">Profile</span>
+</a>
+</nav>
+<!-- Floating Action Button - Practice Mode -->
+<button class="fixed bottom-24 right-6 w-16 h-16 rounded-full editorial-gradient text-on-primary shadow-xl hover:scale-110 active:scale-95 transition-all flex items-center justify-center z-40">
+<span class="material-symbols-outlined text-3xl">play_arrow</span>
+</button>
+</body></html>
