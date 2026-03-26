@@ -72,6 +72,21 @@ export function renderProfile() {
       </p>
     </section>
 
+    <!-- Target Language Selector -->
+    <section class="card animate-fade-in-up" style="margin-bottom:1.5rem;animation-delay:0.14s;opacity:0;">
+      <h3 style="font-family:var(--font-headline);font-weight:700;font-size:1rem;margin-bottom:1rem;">
+        ${t('profile.targetLang')}
+      </h3>
+      <div style="display:flex;gap:0.75rem;">
+        <button id="target-en" class="chip ${(state.targetLang || 'en') === 'en' ? 'chip--active' : 'chip--inactive'}" style="flex:1;">
+          ${t('profile.english')}
+        </button>
+        <button id="target-no" class="chip ${state.targetLang === 'no' ? 'chip--active' : 'chip--inactive'}" style="flex:1;">
+          ${t('profile.norwegian')}
+        </button>
+      </div>
+    </section>
+
     <!-- Stats -->
     <section class="card animate-fade-in-up" style="margin-bottom:1.5rem;animation-delay:0.15s;opacity:0;">
       <h3 style="font-family:var(--font-headline);font-weight:700;font-size:1rem;margin-bottom:1.25rem;">
@@ -135,6 +150,17 @@ export function renderProfile() {
 
     page.querySelector('#lang-uk')?.addEventListener('click', () => {
       setLanguage('uk');
+      forceRefresh();
+    });
+
+    // Target language buttons
+    page.querySelector('#target-en')?.addEventListener('click', () => {
+      store.setTargetLang('en');
+      forceRefresh();
+    });
+
+    page.querySelector('#target-no')?.addEventListener('click', () => {
+      store.setTargetLang('no');
       forceRefresh();
     });
 

@@ -6,6 +6,7 @@ import { renderGoals } from './pages/goals.js';
 import { renderProfile } from './pages/profile.js';
 import { renderShop } from './pages/shop.js';
 import { renderKira } from './pages/kira.js';
+import { renderReading } from './pages/reading.js';
 
 // Register routes
 registerRoute('/home', renderHome);
@@ -13,6 +14,7 @@ registerRoute('/practice', renderPractice);
 registerRoute('/lesson', renderLesson);
 registerRoute('/goals', renderGoals);
 registerRoute('/kira', renderKira);
+registerRoute('/reading', renderReading);
 registerRoute('/shop', renderShop);
 registerRoute('/profile', renderProfile);
 

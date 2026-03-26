@@ -3,6 +3,7 @@ const STORAGE_KEY = 'kiralingo_data';
 
 const DEFAULT_STATE = {
   lang: 'ru', // 'ru' or 'uk'
+  targetLang: 'en', // 'en' or 'no' (English or Norwegian)
   difficulty: 'A1', // 'A1', 'A2', 'B1', 'B2', 'C1'
   streak: { current: 0, lastDate: null, best: 0 },
   xp: { today: 0, total: 0, dailyGoal: 500, lastDate: null },
@@ -178,6 +179,11 @@ class Store {
 
   setDifficulty(level) {
     this._state.difficulty = level;
+    this._save();
+  }
+
+  setTargetLang(lang) {
+    this._state.targetLang = lang;
     this._save();
   }
 

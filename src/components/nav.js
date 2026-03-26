@@ -10,6 +10,7 @@ export function renderNav() {
     { route: '/home', icon: 'home', labelKey: 'nav.home' },
     { route: '/practice', icon: 'auto_stories', labelKey: 'nav.practice' },
     { route: '/goals', icon: 'local_fire_department', labelKey: 'nav.goals' },
+    { route: '/reading', icon: 'menu_book', labelKey: 'nav.reading' },
     { route: '/kira', icon: 'smart_toy', labelKey: 'nav.kira' },
     { route: '/shop', icon: 'shopping_bag', labelKey: 'nav.shop' },
     { route: '/profile', icon: 'person', labelKey: 'nav.profile' },

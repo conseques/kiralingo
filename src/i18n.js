@@ -9,10 +9,24 @@ const translations = {
     'nav.profile': 'Профиль',
     'nav.shop': 'Магазин',
     'nav.kira': 'Кира AI',
+    'nav.reading': 'Чтение',
 
     // Kira AI
     'kira.introduction': 'Твой личный помощник по английскому',
     'kira.placeholder': 'Спроси меня о чём угодно...',
+
+    // Reading
+    'reading.title': 'Практика чтения',
+    'reading.subtitle': 'Читай, пиши и Кира исправит твой текст',
+    'reading.sampleText': '📖 Примеры текстов',
+    'reading.freeWrite': '✍️ Свободное письмо',
+    'reading.writePlaceholder': 'Напиши свой текст здесь...',
+    'reading.checkText': 'Проверить текст',
+    'reading.checkAgain': 'Проверить снова',
+    'reading.freeWriteTitle': 'Свободное письмо',
+    'reading.freeWriteDesc': 'Напиши что угодно, и Кира проанализирует грамматику, лексику и стиль.',
+    'reading.analyzeText': 'Анализировать текст',
+    'reading.analyzeAgain': 'Анализировать снова',
 
     // Home
     'home.greeting': 'Отлично, {name}! Давай покорим раздел',
@@ -108,6 +122,9 @@ const translations = {
     'profile.name': 'Имя',
     'profile.days': 'дн.',
     'profile.difficulty': 'Уровень сложности',
+    'profile.targetLang': 'Целевой язык',
+    'profile.english': 'English 🇬🇧',
+    'profile.norwegian': 'Norsk 🇳🇴',
 
     // Difficulty
     'difficulty.A1': 'A1 — Начинающий',
@@ -163,10 +180,24 @@ const translations = {
     'nav.profile': 'Профіль',
     'nav.shop': 'Магазин',
     'nav.kira': 'Кіра AI',
+    'nav.reading': 'Читання',
 
     // Kira AI
     'kira.introduction': 'Твій особистий помічник з англійської',
     'kira.placeholder': 'Запитай мене про що завгодно...',
+
+    // Reading
+    'reading.title': 'Практика читання',
+    'reading.subtitle': 'Читай, пиши і Кіра виправить твій текст',
+    'reading.sampleText': '📖 Приклади текстів',
+    'reading.freeWrite': '✍️ Вільне письмо',
+    'reading.writePlaceholder': 'Напиши свій текст тут...',
+    'reading.checkText': 'Перевірити текст',
+    'reading.checkAgain': 'Перевірити знову',
+    'reading.freeWriteTitle': 'Вільне письмо',
+    'reading.freeWriteDesc': 'Напиши будь-що, і Кіра проаналізує граматику, лексику та стиль.',
+    'reading.analyzeText': 'Аналізувати текст',
+    'reading.analyzeAgain': 'Аналізувати знову',
 
     // Home
     'home.greeting': 'Чудово, {name}! Давай підкоримо розділ',
@@ -262,6 +293,9 @@ const translations = {
     'profile.name': "Ім'я",
     'profile.days': 'дн.',
     'profile.difficulty': 'Рівень складності',
+    'profile.targetLang': 'Цільова мова',
+    'profile.english': 'English 🇬🇧',
+    'profile.norwegian': 'Norsk 🇳🇴',
 
     // Difficulty
     'difficulty.A1': 'A1 — Початківець',
