@@ -70,13 +70,12 @@ export function renderHome() {
   `;
 
   const offsets = [0, 3, -4, 2, -2.5, 0];
-  const jumpableLevels = ['B1', 'B2', 'C1'];
-  const isJumpable = jumpableLevels.includes(state.difficulty);
+  const isJumpable = true; // Enabled for all levels per user request
 
   UNITS.forEach((unit, i) => {
     const isCompleted = i < activeUnitIndex;
     const isActive = i === activeUnitIndex;
-    const isLocked = i > activeUnitIndex && !isJumpable; // Allow non-sequential for B1, B2, C1
+    const isLocked = i > activeUnitIndex; // Visual lock only, still jumpable
     const isMilestone = i === UNITS.length - 1 && isLocked;
 
     const node = document.createElement('div');

@@ -8,6 +8,11 @@ const translations = {
     'nav.goals': 'Цели',
     'nav.profile': 'Профиль',
     'nav.shop': 'Магазин',
+    'nav.kira': 'Кира AI',
+
+    // Kira AI
+    'kira.introduction': 'Твой личный помощник по английскому',
+    'kira.placeholder': 'Спроси меня о чём угодно...',
 
     // Home
     'home.greeting': 'Отлично, {name}! Давай покорим раздел',
@@ -157,6 +162,11 @@ const translations = {
     'nav.goals': 'Цілі',
     'nav.profile': 'Профіль',
     'nav.shop': 'Магазин',
+    'nav.kira': 'Кіра AI',
+
+    // Kira AI
+    'kira.introduction': 'Твій особистий помічник з англійської',
+    'kira.placeholder': 'Запитай мене про що завгодно...',
 
     // Home
     'home.greeting': 'Чудово, {name}! Давай підкоримо розділ',

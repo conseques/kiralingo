@@ -5,12 +5,14 @@ import { renderLesson } from './pages/lesson.js';
 import { renderGoals } from './pages/goals.js';
 import { renderProfile } from './pages/profile.js';
 import { renderShop } from './pages/shop.js';
+import { renderKira } from './pages/kira.js';
 
 // Register routes
 registerRoute('/home', renderHome);
 registerRoute('/practice', renderPractice);
 registerRoute('/lesson', renderLesson);
 registerRoute('/goals', renderGoals);
+registerRoute('/kira', renderKira);
 registerRoute('/shop', renderShop);
 registerRoute('/profile', renderProfile);
 
