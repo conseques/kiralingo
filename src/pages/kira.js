@@ -1,6 +1,6 @@
 import { t } from '../i18n.js';
 import { renderHeader, renderNav } from '../components/nav.js';
-import { speak, stop } from '../utils/audio.js';
+import { speak, stop, getAllVoices } from '../utils/audio.js';
 import { store } from '../store.js';
 import { getKiraAIResponse } from '../utils/gemini.js';
 
@@ -30,7 +30,7 @@ export function renderKira() {
 
   // Kira Intro & Global Controls
   const introContainer = document.createElement('div');
-  introContainer.style.cssText = 'display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem;';
+  introContainer.style.cssText = 'display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;';
   
   const intro = document.createElement('div');
   intro.style.cssText = 'display:flex; align-items:center; gap:1rem;';
@@ -78,10 +78,62 @@ export function renderKira() {
   introContainer.appendChild(controls);
   content.appendChild(introContainer);
 
+  // Voice Selection Dropdown (Livelier Voice)
+  const voiceSelectionRow = document.createElement('div');
+  voiceSelectionRow.style.cssText = 'display:flex; align-items:center; gap:0.5rem; margin-bottom:1.5rem; padding:0.5rem; background:var(--surface-container-low); border-radius:var(--radius-md);';
+  
+  const voiceIcon = document.createElement('span');
+  voiceIcon.className = 'material-symbols-outlined';
+  voiceIcon.style.cssText = 'font-size:1.25rem; color:var(--primary);';
+  voiceIcon.textContent = 'record_voice_over';
+  voiceSelectionRow.appendChild(voiceIcon);
+
+  const voiceSelect = document.createElement('select');
+  voiceSelect.style.cssText = 'flex:1; background:transparent; border:none; color:var(--on-surface); font-size:0.875rem; outline:none; cursor:pointer;';
+  
+  function updateVoiceList() {
+    voiceSelect.innerHTML = '';
+    const langCode = store.state.targetLang === 'no' ? 'no' : 'en';
+    const allVoices = getAllVoices();
+    const filteredVoices = allVoices.filter(v => 
+      v.lang.startsWith(langCode) || 
+      (langCode === 'no' && v.lang.startsWith('nb'))
+    ).sort((a, b) => {
+      // Prioritize Google and Premium voices in the list
+      const aScore = (a.name.includes('Google') ? 2 : 0) + (a.name.includes('Premium') ? 1 : 0);
+      const bScore = (b.name.includes('Google') ? 2 : 0) + (b.name.includes('Premium') ? 1 : 0);
+      return bScore - aScore;
+    });
+
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.textContent = langCode === 'no' ? 'Velg stemme (Norsk)' : 'Choose voice (English)';
+    voiceSelect.appendChild(defaultOption);
+
+    filteredVoices.forEach(v => {
+      const opt = document.createElement('option');
+      opt.value = v.name;
+      opt.textContent = `${v.name} (${v.lang})`;
+      if (store.state.preferredVoice === v.name) opt.selected = true;
+      voiceSelect.appendChild(opt);
+    });
+  }
+
+  updateVoiceList();
+  window.speechSynthesis.onvoiceschanged = updateVoiceList;
+
+  voiceSelect.onchange = () => {
+    store.setPreferredVoice(voiceSelect.value);
+    speak(store.state.targetLang === 'no' ? "Hei! Hvordan høres denne stemmen ut?" : "Hello! How does this voice sound?", store.state.targetLang === 'no' ? 'nb-NO' : 'en-US');
+  };
+
+  voiceSelectionRow.appendChild(voiceSelect);
+  content.appendChild(voiceSelectionRow);
+
   // Chat Area
   const chatArea = document.createElement('div');
   chatArea.id = 'kira-chat-area';
-  chatArea.style.cssText = 'flex:1; display:flex; flex-direction:column; gap:1.25rem; overflow-y:auto; padding-bottom:2rem; max-height:55vh;';
+  chatArea.style.cssText = 'flex:1; display:flex; flex-direction:column; gap:1.25rem; overflow-y:auto; padding-bottom:2rem; max-height:45vh;';
   content.appendChild(chatArea);
 
   // Logic: Add Message

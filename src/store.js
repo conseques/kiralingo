@@ -19,6 +19,7 @@ const DEFAULT_STATE = {
   inventory: [],           // [{ id, count, type }]
   userName: 'Learner',
   autoPlayAudio: false,
+  preferredVoice: null,
 };
 
 class Store {
@@ -220,6 +221,11 @@ class Store {
 
   setAutoPlayAudio(enabled) {
     this._state.autoPlayAudio = enabled;
+    this._save();
+  }
+
+  setPreferredVoice(name) {
+    this._state.preferredVoice = name;
     this._save();
   }
 

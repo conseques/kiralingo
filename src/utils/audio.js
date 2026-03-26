@@ -15,21 +15,37 @@ if ('speechSynthesis' in window) {
 }
 
 /**
+ * Gets all available voices.
+ */
+export function getAllVoices() {
+  if (voices.length === 0) {
+    voices = window.speechSynthesis.getVoices();
+  }
+  return voices;
+}
+
+/**
  * Finds the best available voice for a given language.
  * Priorities:
+ * 0. User preferred voice from store
  * 1. Voices with "Google" in the name (often higher quality)
  * 2. Voices with "Premium" or "Enhanced" or "High Quality"
  * 3. Specific preferred names for the lang
  * 4. First available voice for the lang
  */
 export function getBestVoice(lang = 'en-US') {
-  if (voices.length === 0) {
-    voices = window.speechSynthesis.getVoices();
-  }
-
+  const allVoices = getAllVoices();
   const langCode = lang.split('-')[0];
-  const langVoices = voices.filter(v => v.lang.startsWith(langCode));
+  const langVoices = allVoices.filter(v => v.lang.startsWith(langCode));
+  
   if (langVoices.length === 0) return null;
+
+  // 0. User preferred voice
+  const preferred = store.state.preferredVoice;
+  if (preferred) {
+    const userVoice = langVoices.find(v => v.name === preferred);
+    if (userVoice) return userVoice;
+  }
 
   // 1. Check for Google voices
   const googleVoice = langVoices.find(v => v.name.includes('Google'));
