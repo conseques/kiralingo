@@ -1,7 +1,8 @@
 // ─── C1 Units ──────────────────────────────────────────
-export const UNITS_C1 = [
+
+const UNITS_C1_EN = [
   {
-    id: 'academic_eng', nameKey: 'unit.academic', icon: 'school', level: 'C1',
+    id: 'academic_eng', nameKey: 'unit.academic', icon: 'school', level: 'C1', onlyLang: 'en',
     lessons: [
       {
         id: 'academic-1',
@@ -26,7 +27,7 @@ export const UNITS_C1 = [
     ]
   },
   {
-    id: 'nuance_register', nameKey: 'unit.nuance', icon: 'tune', level: 'C1',
+    id: 'nuance_register', nameKey: 'unit.nuance', icon: 'tune', level: 'C1', onlyLang: 'en',
     lessons: [
       {
         id: 'nuance-1',
@@ -41,7 +42,7 @@ export const UNITS_C1 = [
     ]
   },
   {
-    id: 'climate_geo', nameKey: 'unit.climateGeo', icon: 'public', level: 'C1',
+    id: 'climate_geo', nameKey: 'unit.climateGeo', icon: 'public', level: 'C1', onlyLang: 'en',
     lessons: [
       {
         id: 'climate-1',
@@ -76,7 +77,7 @@ export const UNITS_C1 = [
     ]
   },
   {
-    id: 'debate', nameKey: 'unit.debate', icon: 'forum', level: 'C1',
+    id: 'debate', nameKey: 'unit.debate', icon: 'forum', level: 'C1', onlyLang: 'en',
     lessons: [
       {
         id: 'debate-1',
@@ -91,7 +92,7 @@ export const UNITS_C1 = [
     ]
   },
   {
-    id: 'literature_unit', nameKey: 'unit.literature', icon: 'menu_book', level: 'C1',
+    id: 'literature_unit', nameKey: 'unit.literature', icon: 'menu_book', level: 'C1', onlyLang: 'en',
     lessons: [
       {
         id: 'literature-1',
@@ -106,7 +107,7 @@ export const UNITS_C1 = [
     ]
   },
   {
-    id: 'collocations', nameKey: 'unit.collocations', icon: 'link', level: 'C1',
+    id: 'collocations', nameKey: 'unit.collocations', icon: 'link', level: 'C1', onlyLang: 'en',
     lessons: [
       {
         id: 'collocations-1',
@@ -119,5 +120,40 @@ export const UNITS_C1 = [
         ]
       }
     ]
-  },
+  }
 ];
+
+const UNITS_C1_NO = [
+  {
+    id: 'healthcare_no', nameKey: 'unit.healthcareNo', icon: 'medical_services', level: 'C1', onlyLang: 'no',
+    lessons: [
+      {
+        id: 'helse-1',
+        exercises: [
+          { type: 'match-pairs', pairs: [{ en: 'Fastlege', local: { ru: 'Лечащий врач', uk: 'Лікуючий лікар' } }, { en: 'Egenandel', local: { ru: 'Доплата (франшиза)', uk: 'Доплата (франшиза)' } }, { en: 'Resept', local: { ru: 'Рецепт', uk: 'Рецепт' } }, { en: 'Legevakt', local: { ru: 'Дежурный врач', uk: 'Черговий лікар' } }, { en: 'Sykehus', local: { ru: 'Больница', uk: 'Лікарня' } }] },
+          { type: 'fill-blank', sentence: 'Du betaler bare en ___ når du går til fastlegen.', options: ['egenandel', 'billett', 'is', 'hund'], correctIndex: 0, context: { ru: 'Ты платишь только доплату, когда идешь к врачу.', uk: 'Ти платиш тільки доплату, коли йдеш до лікаря.' } },
+          { type: 'typing', prompt: { ru: 'Рецепт', uk: 'Рецепт' }, answer: 'Resept' },
+          { type: 'sentence-order', words: ['Ring', 'legevakten', 'hvis', 'det', 'er', 'akutt'], answer: ['Ring', 'legevakten', 'hvis', 'det', 'er', 'akutt'], context: { ru: 'Звони дежурному врачу, если это срочно', uk: 'Дзвони черговому лікарю, якщо це терміново' } },
+          { type: 'true-false', statement: { en: 'Helfo dekker noen utgifter', ru: 'Helfo покрывает некоторые расходы', uk: 'Helfo покриває деякі витрати' }, isTrue: true },
+        ]
+      }
+    ]
+  },
+  {
+    id: 'society_no', nameKey: 'unit.societyNo', icon: 'diversity_1', level: 'C1', onlyLang: 'no',
+    lessons: [
+      {
+        id: 'samfunn-1',
+        exercises: [
+          { type: 'match-pairs', pairs: [{ en: 'Dugnad', local: { ru: 'Субботник (Волонтерство)', uk: 'Толока (Волонтерство)' } }, { en: 'Likestilling', local: { ru: 'Равноправие', uk: 'Рівноправність' } }, { en: 'Velferdsstat', local: { ru: 'Государство благосостояния', uk: 'Держава добробуту' } }, { en: 'Allemannsretten', local: { ru: 'Право доступа к природе', uk: 'Право доступу до природи' } }, { en: 'Plikt', local: { ru: 'Обязанность', uk: 'Обов\'язок' } }] },
+          { type: 'fill-blank', sentence: 'I Norge er ___ en viktig del av kulturen.', options: ['dugnad', 'sove', 'slite', 'rope'], correctIndex: 0, context: { ru: 'В Норвегии субботник - важная часть культуры.', uk: 'У Норвегії толока - важлива частина культури.' } },
+          { type: 'word-bank', questionKey: 'lesson.howToSay', questionParam: { ru: 'Это обеспечивает экономическую безопасность', uk: 'Це забезпечує економічну безпеку' }, answer: ['Det', 'sikrer', 'økonomisk', 'trygghet'], bank: ['Det', 'Sikrer', 'Økonomisk', 'Trygghet', 'Mat', 'Bil'] },
+          { type: 'typing', prompt: { ru: 'Равноправие', uk: 'Рівноправність' }, answer: 'Likestilling' },
+          { type: 'true-false', statement: { en: 'Allemannsretten', ru: 'Право доступа к природе', uk: 'Право доступу до природи' }, isTrue: true },
+        ]
+      }
+    ]
+  }
+];
+
+export const UNITS_C1 = [...UNITS_C1_EN, ...UNITS_C1_NO];

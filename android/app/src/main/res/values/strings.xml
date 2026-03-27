@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Norskly</string>
+    <string name="title_activity_main">Norskly</string>
+    <string name="package_name">com.mrija.norskly</string>
+    <string name="custom_url_scheme">com.mrija.norskly</string>
+</resources>

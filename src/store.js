@@ -1,5 +1,7 @@
 // LocalStorage-backed store for the Kiralingo app
 const STORAGE_KEY = 'kiralingo_data';
+import { auth, syncStateToFirestore, listenToFirestoreState } from './services/firebase.js';
+import { onAuthStateChanged } from "firebase/auth";
 
 const DEFAULT_STATE = {
   lang: 'ru', // 'ru' or 'uk'
@@ -18,6 +20,8 @@ const DEFAULT_STATE = {
   achievements: [],        // achievement IDs
   inventory: [],           // [{ id, count, type }]
   userName: 'Learner',
+  userPhoto: null,
+  userId: null,
   autoPlayAudio: false,
   preferredVoice: null,
 };
@@ -27,6 +31,48 @@ class Store {
     this._state = this._load();
     this._listeners = [];
     this._checkDailyReset();
+    this._syncTimeout = null;
+    this._unsubscribeFirestore = null;
+    this._initAuth();
+  }
+
+  _initAuth() {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        this._state.userId = user.uid;
+        this._state.userName = user.displayName || this._state.userName;
+        this._state.userPhoto = user.photoURL || null;
+        
+        if (this._unsubscribeFirestore) this._unsubscribeFirestore();
+        this._unsubscribeFirestore = listenToFirestoreState(user.uid, (remoteState) => {
+          // Prevent infinite loops if remote triggers local save
+          this._state = { ...this._state, ...remoteState, userId: user.uid, userName: user.displayName || remoteState.userName, userPhoto: user.photoURL };
+          this._notify();
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(this._state));
+        });
+        
+        this._save(); // Trigger save to sync local to remote if remote is empty
+        
+        import('./router.js').then(r => {
+          const current = window.location.hash.slice(1);
+          if (current === '/welcome' || current === '/' || current === '') {
+            r.navigate('/home');
+          }
+        });
+      } else {
+        this._state.userId = null;
+        this._state.userPhoto = null;
+        if (this._unsubscribeFirestore) {
+          this._unsubscribeFirestore();
+          this._unsubscribeFirestore = null;
+        }
+        this._save();
+        
+        import('./router.js').then(r => {
+          r.navigate('/welcome');
+        });
+      }
+    });
   }
 
   _load() {
@@ -39,11 +85,20 @@ class Store {
     return { ...DEFAULT_STATE };
   }
 
+  _scheduleFirestoreSync() {
+    if (!this._state.userId) return;
+    if (this._syncTimeout) clearTimeout(this._syncTimeout);
+    this._syncTimeout = setTimeout(() => {
+      syncStateToFirestore(this._state.userId, this._state);
+    }, 2000);
+  }
+
   _save() {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(this._state));
     } catch (e) { /* ignore */ }
     this._notify();
+    this._scheduleFirestoreSync();
   }
 
   _notify() {

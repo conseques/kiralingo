@@ -1,8 +1,9 @@
 import { t } from '../i18n.js';
 import { store } from '../store.js';
-import { navigate } from '../router.js';
+import { navigate, forceRefresh } from '../router.js';
 import { getActiveUnits, getNextLesson } from '../data/lessons.js';
 import { renderHeader, renderNav } from '../components/nav.js';
+import { signInWithGoogle } from '../services/firebase.js';
 
 export function renderHome() {
   const page = document.createElement('div');
@@ -21,40 +22,40 @@ export function renderHome() {
   content.className = 'page-content';
   content.style.paddingTop = '1.5rem';
 
-  // Kira Guidance
-  const guidance = document.createElement('div');
-  guidance.className = 'animate-fade-in-up';
-  guidance.style.cssText = 'display:flex; align-items:flex-end; margin-bottom:3rem; position:relative;';
-  guidance.innerHTML = `
-    <div style="position:relative; z-index:10; width:33%; flex-shrink:0; filter:drop-shadow(0 10px 15px rgba(0,0,0,0.1));">
-      <img src="/images/kira-greeting.webp" alt="Kira"
-        style="border-radius:var(--radius-md); object-fit:cover; aspect-ratio:3/4; width:100%;" />
-    </div>
-    <div style="width:67%; padding-left:1rem; margin-bottom:1rem;">
-      <div style="background:color-mix(in srgb, var(--secondary-container) 80%, transparent);
-        backdrop-filter:blur(8px); padding:1.25rem; border-radius:var(--radius-md);
-        border-bottom-left-radius:0; box-shadow:var(--shadow-sm);">
-        <p style="color:var(--on-secondary-container); font-weight:500; line-height:1.6;">
-          "${t('home.greeting', { name: state.userName })} <strong style="text-decoration:underline;">${unitName}</strong>!"
-        </p>
-      </div>
-    </div>
-  `;
-  content.appendChild(guidance);
 
-  // Level badge
-  const levelBadge = document.createElement('div');
-  levelBadge.style.cssText = 'display:flex;justify-content:center;margin-bottom:2rem;';
-  levelBadge.innerHTML = `
-    <div style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.5rem 1.25rem;
-      background:var(--primary-container);border-radius:var(--radius-full);box-shadow:var(--shadow-sm);">
-      <span class="material-symbols-outlined filled" style="font-size:1.25rem;color:var(--primary);">school</span>
-      <span style="font-family:var(--font-headline);font-weight:700;color:var(--on-primary-container);font-size:0.875rem;">
-        ${state.difficulty} — ${t('difficulty.' + state.difficulty + '.short')}
-      </span>
+
+  // Daily Goals & Progress Block
+  const progressBlock = document.createElement('div');
+  progressBlock.className = 'grid grid-cols-2 gap-4 mb-10 animate-fade-in-up';
+  
+  const xpPercent = Math.min(100, (state.xp.today / state.xp.dailyGoal) * 100);
+  
+  progressBlock.innerHTML = `
+    <!-- Daily Goal -->
+    <div class="organic-pebble-1 bg-surface-container-low p-5 border border-surface-container-high shadow-sm flex flex-col items-center text-center group hover:-translate-y-1 transition-transform cursor-pointer">
+      <div class="relative w-16 h-16 mb-2">
+        <svg class="w-full h-full -rotate-90" viewBox="0 0 36 36">
+          <path class="text-surface-container-highest" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="4" stroke-dasharray="100, 100" />
+          <path class="${xpPercent >= 100 ? 'text-primary' : 'text-secondary'}" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="4" stroke-dasharray="${xpPercent}, 100" style="transition: stroke-dasharray 1s ease-out;" />
+        </svg>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <span class="material-symbols-outlined ${xpPercent >= 100 ? 'text-primary' : 'text-secondary'}">${xpPercent >= 100 ? 'bolt' : 'trending_up'}</span>
+        </div>
+      </div>
+      <h3 class="font-headline font-extrabold text-on-surface">${state.xp.today} / ${state.xp.dailyGoal}</h3>
+      <p class="font-label text-xs uppercase tracking-wider text-on-surface-variant font-bold">Daily XP</p>
+    </div>
+
+    <!-- Streak -->
+    <div class="organic-pebble-2 bg-surface-container-lowest p-5 border border-surface-container-high shadow-sm flex flex-col items-center text-center group hover:-translate-y-1 transition-transform cursor-pointer">
+      <div class="w-16 h-16 rounded-full bg-error-container/30 text-error flex items-center justify-center mb-2 shadow-inner group-hover:scale-110 transition-transform">
+        <span class="material-symbols-outlined text-3xl ${state.streak.current > 0 ? 'filled animate-pulse' : ''}">local_fire_department</span>
+      </div>
+      <h3 class="font-headline font-extrabold text-on-surface">${state.streak.current} Days</h3>
+      <p class="font-label text-xs uppercase tracking-wider text-on-surface-variant font-bold">Current Streak</p>
     </div>
   `;
-  content.appendChild(levelBadge);
+  content.appendChild(progressBlock);
 
   // Learning Path
   const section = document.createElement('section');

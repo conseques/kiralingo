@@ -2,18 +2,87 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <meta name="theme-color" content="#2e6c00" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="description" content="Kiralingo — learn English with your AI companion Kira. Interactive lessons, vocabulary practice, and streak tracking." />
-  <title>Kiralingo</title>
+  <meta name="description" content="Norskly — learn English with your AI companion Kira. Interactive lessons, vocabulary practice, and streak tracking." />
+  <title>Norskly</title>
   <link rel="icon" type="image/png" href="/images/icon-192.png" />
   <link rel="apple-touch-icon" href="/images/icon-192.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "background": "#f9f9f7",
+            "on-tertiary-fixed": "#504234",
+            "error-dim": "#4e0309",
+            "on-tertiary-container": "#635445",
+            "on-error-container": "#752121",
+            "surface-container-low": "#f3f4f2",
+            "secondary-fixed": "#c2eaed",
+            "surface": "#f9f9f7",
+            "on-primary": "#e1ffea",
+            "inverse-on-surface": "#9c9d9b",
+            "secondary-container": "#c2eaed",
+            "outline-variant": "#adb3b0",
+            "surface-container": "#ecefec",
+            "primary-container": "#bceecf",
+            "on-error": "#fff7f6",
+            "inverse-surface": "#0d0f0e",
+            "on-secondary-fixed": "#1f4548",
+            "on-primary-container": "#2d5a43",
+            "on-primary-fixed-variant": "#37644d",
+            "tertiary-container": "#fde7d3",
+            "primary": "#3a674f",
+            "tertiary-dim": "#5f5142",
+            "on-primary-fixed": "#194732",
+            "surface-container-lowest": "#ffffff",
+            "tertiary": "#6c5c4d",
+            "secondary-dim": "#34595c",
+            "primary-dim": "#2e5b44",
+            "surface-container-high": "#e5e9e6",
+            "secondary": "#406568",
+            "on-secondary-container": "#33585a",
+            "on-secondary": "#e6fdff",
+            "error-container": "#fe8983",
+            "error": "#9f403d",
+            "surface-variant": "#dee4e0",
+            "on-tertiary-fixed-variant": "#6d5e4f",
+            "secondary-fixed-dim": "#b4dcdf",
+            "primary-fixed": "#bceecf",
+            "surface-bright": "#f9f9f7",
+            "on-tertiary": "#fff7f3",
+            "surface-tint": "#3a674f",
+            "surface-container-highest": "#dee4e0",
+            "on-surface-variant": "#5a605e",
+            "primary-fixed-dim": "#aee0c2",
+            "on-surface": "#2e3432",
+            "surface-dim": "#d4dcd8",
+            "on-background": "#2e3432",
+            "on-secondary-fixed-variant": "#3d6164",
+            "inverse-primary": "#c7f9da",
+            "outline": "#767c79",
+            "tertiary-fixed-dim": "#eed9c6",
+            "tertiary-fixed": "#fde7d3"
+          },
+          fontFamily: {
+            "headline": ["Plus Jakarta Sans"],
+            "body": ["Plus Jakarta Sans"],
+            "label": ["Manrope"]
+          },
+          borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
   <link rel="stylesheet" href="/src/styles/variables.css" />
   <link rel="stylesheet" href="/src/styles/global.css" />
 </head>

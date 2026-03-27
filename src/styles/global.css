@@ -41,14 +41,15 @@ input { font-family: inherit; }
   overflow-x: hidden;
 }
 
-.page { padding-top: 4.5rem; padding-bottom: 6rem; min-height: 100dvh; }
+.page { padding-top: calc(env(safe-area-inset-top, 0rem) + 4.5rem); padding-bottom: calc(env(safe-area-inset-bottom, 0rem) + 6rem); min-height: 100dvh; }
 .page-content { max-width: 600px; margin: 0 auto; padding: 0 1.5rem; }
 
 /* --- Header --- */
 .app-header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 50;
   display: flex; justify-content: space-between; align-items: center;
-  padding: 0 1.5rem; height: 4rem;
+  padding: env(safe-area-inset-top, 0rem) 1.5rem 0 1.5rem;
+  height: calc(4rem + env(safe-area-inset-top, 0rem));
   background: var(--surface);
 }
 
@@ -219,6 +220,28 @@ input { font-family: inherit; }
   -webkit-backdrop-filter: blur(12px);
 }
 
+/* --- Nordic Design Utilities --- */
+.organic-pebble-1 { border-radius: 45% 55% 50% 50%; }
+.organic-pebble-2 { border-radius: 52% 48% 55% 45%; }
+.organic-pebble-3 { border-radius: 48% 52% 43% 57%; }
+.aurora-glow {
+    background: linear-gradient(135deg, #bceecf 0%, #c2eaed 100%);
+    box-shadow: 0 0 25px rgba(188, 238, 207, 0.4);
+}
+.aurora-gradient {
+    background: linear-gradient(135deg, #3a674f 0%, #406568 50%, #6c5c4d 100%);
+}
+.wood-texture {
+    background-color: #fde7d3;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDtIDrShNHU6vuqMA8fumoLbDvtHPPLbadhv7W85scGtz8nyAgmtry5nMoh-MowOQ533IujJvy9EsSq7JEHtAJU7b3MJG4mZfszTzwqunA0c8uaZNJFrbXiThzStATjp6Xyz3D82NcRWAcx-Sr-gedih1_bsMkiTisMTMv594V2EQf_ApFTkguRQttQ4JYZy7Nsypo20aQCN2A1LBZCVvIQRD66PVnbFPhbJUfsJEuWCfBOBQ8TT3EUjAb_6422oOEgtFw2z1t9R41V);
+}
+.runic-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 5l2 2-2 2-2-2 2-2zM5 20l2 2-2 2-2-2 2-2zm30 0l2 2-2 2-2-2 2-2zM20 35l2 2-2 2-2-2 2-2z' fill='%23adb3b0' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+.glass-nav {
+    backdrop-filter: blur(24px);
+}
+
 /* --- Animations --- */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(1rem); }
@@ -278,7 +301,8 @@ input { font-family: inherit; }
 .lesson-header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 50;
   display: flex; align-items: center; gap: 1rem;
-  padding: 0 1.5rem; height: 5rem;
+  padding: env(safe-area-inset-top, 0rem) 1.5rem 0 1.5rem;
+  height: calc(5rem + env(safe-area-inset-top, 0rem));
   background: var(--surface);
 }
 

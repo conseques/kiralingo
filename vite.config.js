@@ -7,8 +7,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['images/**/*'],
       manifest: {
-        name: 'Kiralingo',
-        short_name: 'Kiralingo',
+        name: 'Norskly',
+        short_name: 'Norskly',
         description: 'Learn English with Kira — your AI language companion',
         theme_color: '#2e6c00',
         background_color: '#fbf9f8',

@@ -7,6 +7,8 @@ import { renderProfile } from './pages/profile.js';
 import { renderShop } from './pages/shop.js';
 import { renderKira } from './pages/kira.js';
 import { renderReading } from './pages/reading.js';
+import { renderPremium } from './pages/premium.js';
+import { renderWelcome } from './pages/welcome.js';
 
 // Register routes
 registerRoute('/home', renderHome);
@@ -17,6 +19,8 @@ registerRoute('/kira', renderKira);
 registerRoute('/reading', renderReading);
 registerRoute('/shop', renderShop);
 registerRoute('/profile', renderProfile);
+registerRoute('/premium', renderPremium);
+registerRoute('/welcome', renderWelcome);
 
 // Initialize
 const app = document.getElementById('app');

@@ -1,7 +1,8 @@
 // ─── B1 Units ──────────────────────────────────────────
-export const UNITS_B1 = [
+
+const UNITS_B1_EN = [
   {
-    id: 'work_career', nameKey: 'unit.workCareer', icon: 'work', level: 'B1',
+    id: 'work_career', nameKey: 'unit.workCareer', icon: 'work', level: 'B1', onlyLang: 'en',
     lessons: [
       {
         id: 'work-1',
@@ -26,7 +27,7 @@ export const UNITS_B1 = [
     ]
   },
   {
-    id: 'health_unit', nameKey: 'unit.health', icon: 'favorite', level: 'B1',
+    id: 'health_unit', nameKey: 'unit.health', icon: 'favorite', level: 'B1', onlyLang: 'en',
     lessons: [
       {
         id: 'health-1',
@@ -41,7 +42,7 @@ export const UNITS_B1 = [
     ]
   },
   {
-    id: 'travel_advanced', nameKey: 'unit.travelAdv', icon: 'flight', level: 'B1',
+    id: 'travel_advanced', nameKey: 'unit.travelAdv', icon: 'flight', level: 'B1', onlyLang: 'en',
     lessons: [
       {
         id: 'travel-adv-1',
@@ -56,7 +57,7 @@ export const UNITS_B1 = [
     ]
   },
   {
-    id: 'media_tech', nameKey: 'unit.mediaTech', icon: 'smartphone', level: 'B1',
+    id: 'media_tech', nameKey: 'unit.mediaTech', icon: 'smartphone', level: 'B1', onlyLang: 'en',
     lessons: [
       {
         id: 'media-1',
@@ -71,7 +72,7 @@ export const UNITS_B1 = [
     ]
   },
   {
-    id: 'environment_unit', nameKey: 'unit.environment', icon: 'eco', level: 'B1',
+    id: 'environment_unit', nameKey: 'unit.environment', icon: 'eco', level: 'B1', onlyLang: 'en',
     lessons: [
       {
         id: 'environ-1',
@@ -84,5 +85,40 @@ export const UNITS_B1 = [
         ]
       }
     ]
-  },
+  }
 ];
+
+const UNITS_B1_NO = [
+  {
+    id: 'nav_welfare', nameKey: 'unit.navWelfare', icon: 'account_balance', level: 'B1', onlyLang: 'no',
+    lessons: [
+      {
+        id: 'nav-1',
+        exercises: [
+          { type: 'match-pairs', pairs: [{ en: 'Sykemelding', local: { ru: 'Больничный', uk: 'Лікарняний' } }, { en: 'Dagpenger', local: { ru: 'Пособие по безработице', uk: 'Допомога по безробіттю' } }, { en: 'Meldekort', local: { ru: 'Отчетная карта', uk: 'Звітна картка' } }, { en: 'Søknad', local: { ru: 'Заявление', uk: 'Заява' } }, { en: 'Kontor', local: { ru: 'Офис', uk: 'Офіс' } }] },
+          { type: 'fill-blank', sentence: 'Du må fylle ut en ___ for å få dagpenger.', options: ['søknad', 'bil', 'mat', 'stol'], correctIndex: 0, context: { ru: 'Ты должен заполнить заявление, чтобы получить пособие.', uk: 'Ти повинен заповнити заяву, щоб отримати допомогу.' } },
+          { type: 'sentence-order', words: ['Jeg', 'må', 'sende', 'meldekort', 'i', 'dag'], answer: ['Jeg', 'må', 'sende', 'meldekort', 'i', 'dag'], context: { ru: 'Мне нужно отправить отчетную карту сегодня', uk: 'Мені потрібно відправити звітну картку сьогодні' } },
+          { type: 'typing', prompt: { ru: 'Больничный', uk: 'Лікарняний' }, answer: 'Sykemelding' },
+          { type: 'true-false', statement: { en: 'Dagpenger', ru: 'Пособие по безработице', uk: 'Допомога по безробіттю' }, isTrue: true },
+        ]
+      }
+    ]
+  },
+  {
+    id: 'work_norway', nameKey: 'unit.workNorway', icon: 'work', level: 'B1', onlyLang: 'no',
+    lessons: [
+      {
+        id: 'work-no-1',
+        exercises: [
+          { type: 'match-pairs', pairs: [{ en: 'Arbeidsmiljølov', local: { ru: 'Закон об условиях труда', uk: 'Закон про умови праці' } }, { en: 'Tillitsvalgt', local: { ru: 'Профсоюзный делегат', uk: 'Профспілковий делегат' } }, { en: 'Tariffavtale', local: { ru: 'Коллективный договор', uk: 'Колективний договір' } }, { en: 'Lønn', local: { ru: 'Зарплата', uk: 'Зарплата' } }, { en: 'Overtid', local: { ru: 'Сверхурочные', uk: 'Надурочні' } }] },
+          { type: 'word-bank', questionKey: 'lesson.howToSay', questionParam: { ru: 'Поговори со своим делегатом', uk: 'Поговори зі своїм делегатом' }, answer: ['Snakk', 'med', 'din', 'tillitsvalgt'], bank: ['Snakk', 'Med', 'Din', 'Tillitsvalgt', 'Sjef', 'Lege'] },
+          { type: 'fill-blank', sentence: 'Jeg jobbet mye ___ denne uken.', options: ['overtid', 'kaffe', 'syk', 'ferie'], correctIndex: 0, context: { ru: 'На этой неделе я много работал сверхурочно.', uk: 'Цього тижня я багато працював надурочно.' } },
+          { type: 'typing', prompt: { ru: 'Зарплата', uk: 'Зарплата' }, answer: 'Lønn' },
+          { type: 'multiple-choice', questionKey: 'lesson.chooseCorrect', questionWord: { en: 'Arbeidsmiljølov', ru: 'Закон об условиях труда', uk: 'Закон про умови праці' }, options: [{ en: 'Veiloven', ru: 'Дорожный закон', uk: 'Дорожній закон' }, { en: 'Arbeidsmiljølov', ru: 'Закон об условиях труда', uk: 'Закон про умови праці' }, { en: 'Straffeloven', ru: 'Уголовный кодекс', uk: 'Кримінальний кодекс' }, { en: 'Skatteloven', ru: 'Налоговый закон', uk: 'Податковий закон' }], correctIndex: 1 },
+        ]
+      }
+    ]
+  }
+];
+
+export const UNITS_B1 = [...UNITS_B1_EN, ...UNITS_B1_NO];

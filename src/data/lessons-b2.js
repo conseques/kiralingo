@@ -1,7 +1,8 @@
 // ─── B2 Units ──────────────────────────────────────────
-export const UNITS_B2 = [
+
+const UNITS_B2_EN = [
   {
-    id: 'business_eng', nameKey: 'unit.business', icon: 'business', level: 'B2',
+    id: 'business_eng', nameKey: 'unit.business', icon: 'business', level: 'B2', onlyLang: 'en',
     lessons: [
       {
         id: 'business-1',
@@ -26,7 +27,7 @@ export const UNITS_B2 = [
     ]
   },
   {
-    id: 'science_unit', nameKey: 'unit.science', icon: 'science', level: 'B2',
+    id: 'science_unit', nameKey: 'unit.science', icon: 'science', level: 'B2', onlyLang: 'en',
     lessons: [
       {
         id: 'science-1',
@@ -41,7 +42,7 @@ export const UNITS_B2 = [
     ]
   },
   {
-    id: 'env_sustainability', nameKey: 'unit.environmentSustainability', icon: 'eco', level: 'B2',
+    id: 'env_sustainability', nameKey: 'unit.environmentSustainability', icon: 'eco', level: 'B2', onlyLang: 'en',
     lessons: [
       {
         id: 'env-1',
@@ -73,7 +74,7 @@ export const UNITS_B2 = [
     ]
   },
   {
-    id: 'idioms', nameKey: 'unit.idioms', icon: 'auto_awesome', level: 'B2',
+    id: 'idioms', nameKey: 'unit.idioms', icon: 'auto_awesome', level: 'B2', onlyLang: 'en',
     lessons: [
       {
         id: 'idioms-1',
@@ -88,7 +89,7 @@ export const UNITS_B2 = [
     ]
   },
   {
-    id: 'culture_society', nameKey: 'unit.cultureSociety', icon: 'public', level: 'B2',
+    id: 'culture_society', nameKey: 'unit.cultureSociety', icon: 'public', level: 'B2', onlyLang: 'en',
     lessons: [
       {
         id: 'culture-soc-1',
@@ -103,7 +104,7 @@ export const UNITS_B2 = [
     ]
   },
   {
-    id: 'psychology', nameKey: 'unit.psychology', icon: 'psychology', level: 'B2',
+    id: 'psychology', nameKey: 'unit.psychology', icon: 'psychology', level: 'B2', onlyLang: 'en',
     lessons: [
       {
         id: 'psych-1',
@@ -116,5 +117,40 @@ export const UNITS_B2 = [
         ]
       }
     ]
-  },
+  }
 ];
+
+const UNITS_B2_NO = [
+  {
+    id: 'skatteetaten', nameKey: 'unit.skattTaxes', icon: 'account_balance_wallet', level: 'B2', onlyLang: 'no',
+    lessons: [
+      {
+        id: 'skatt-1',
+        exercises: [
+          { type: 'match-pairs', pairs: [{ en: 'Skattemelding', local: { ru: 'Налоговая декларация', uk: 'Податкова декларація' } }, { en: 'Frikort', local: { ru: 'Освобождение от налогов', uk: 'Звільнення від податків' } }, { en: 'Baksmell', local: { ru: 'Недоплата по налогам', uk: 'Недоплата за податками' } }, { en: 'Fradrag', local: { ru: 'Вычет', uk: 'Вирахування' } }, { en: 'Skatt', local: { ru: 'Налог', uk: 'Податок' } }] },
+          { type: 'fill-blank', sentence: 'Du må sjekke din ___ i april.', options: ['skattemelding', 'hund', 'kaffe', 'sykkel'], correctIndex: 0, context: { ru: 'Ты должен проверить налоговую декларацию в апреле.', uk: 'Ти повинен перевірити податкову декларацію у квітні.' } },
+          { type: 'word-bank', questionKey: 'lesson.howToSay', questionParam: { ru: 'Я получил недоплату по налогам.', uk: 'Я отримав недоплату за податками.' }, answer: ['Jeg', 'fikk', 'baksmell', 'på', 'skatten'], bank: ['Jeg', 'Fikk', 'Baksmell', 'På', 'Skatten', 'Toget'] },
+          { type: 'typing', prompt: { ru: 'Налог', uk: 'Податок' }, answer: 'Skatt' },
+          { type: 'true-false', statement: { en: 'Frikort', ru: 'Освобождение от налогов', uk: 'Звільнення від податків' }, isTrue: true },
+        ]
+      }
+    ]
+  },
+  {
+    id: 'housing_bank', nameKey: 'unit.housingBank', icon: 'home', level: 'B2', onlyLang: 'no',
+    lessons: [
+      {
+        id: 'bolig-1',
+        exercises: [
+          { type: 'match-pairs', pairs: [{ en: 'Visning', local: { ru: 'Просмотр квартиры', uk: 'Перегляд квартири' } }, { en: 'Depositum', local: { ru: 'Залог', uk: 'Застава' } }, { en: 'Leiekontrakt', local: { ru: 'Договор аренды', uk: 'Договір оренди' } }, { en: 'Boliglån', local: { ru: 'Ипотека', uk: 'Іпотека' } }, { en: 'Rente', local: { ru: 'Процент', uk: 'Відсоток' } }] },
+          { type: 'fill-blank', sentence: 'Du trenger ___ for å logge inn i nettbanken.', options: ['BankID', 'melk', 'buss', 'pass'], correctIndex: 0, context: { ru: 'Тебе нужен BankID, чтобы войти в банк.', uk: 'Тобі потрібен BankID, щоб увійти в банк.' } },
+          { type: 'sentence-order', words: ['Vi', 'skal', 'på', 'visning', 'i', 'morgen'], answer: ['Vi', 'skal', 'på', 'visning', 'i', 'morgen'], context: { ru: 'Завтра мы идем на просмотр квартиры.', uk: 'Завтра ми йдемо на перегляд квартири.' } },
+          { type: 'typing', prompt: { ru: 'Залог', uk: 'Застава' }, answer: 'Depositum' },
+          { type: 'multiple-choice', questionKey: 'lesson.chooseCorrect', questionWord: { en: 'Boliglån', ru: 'Ипотека', uk: 'Іпотека' }, options: [{ en: 'Bilkjøp', ru: 'Покупка машины', uk: 'Купівля машини' }, { en: 'Boliglån', ru: 'Ипотека', uk: 'Іпотека' }, { en: 'Strømregning', ru: 'Счет за электричество', uk: 'Рахунок за електрику' }, { en: 'Leilighet', ru: 'Квартира', uk: 'Квартира' }], correctIndex: 1 },
+        ]
+      }
+    ]
+  }
+];
+
+export const UNITS_B2 = [...UNITS_B2_EN, ...UNITS_B2_NO];

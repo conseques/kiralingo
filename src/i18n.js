@@ -166,6 +166,15 @@ const translations = {
     'unit.collocations': 'Коллокации',
     'unit.environmentSustainability': 'Экология и устойчивость',
     'unit.climateGeo': 'Климатология и Гeoнаука',
+    
+    // Norwegian Specific Units
+    'unit.navWelfare': 'NAV и Соцзащита',
+    'unit.workNorway': 'Работа в Норвегии',
+    'unit.skattTaxes': 'Налоги и Skatteetaten',
+    'unit.housingBank': 'Жилье и BankID',
+    'unit.healthcareNo': 'Медицина (Fastlege)',
+    'unit.societyNo': 'Общество Норвегии',
+    
     // Legacy
     'unit.phrases': 'Фразы',
     'unit.travel': 'Путешествия',
@@ -337,6 +346,15 @@ const translations = {
     'unit.collocations': 'Колокації',
     'unit.environmentSustainability': 'Екологія та сталість',
     'unit.climateGeo': 'Кліматологія та Геонаука',
+    
+    // Norwegian Specific Units
+    'unit.navWelfare': 'NAV та Соцзахист',
+    'unit.workNorway': 'Робота в Норвегії',
+    'unit.skattTaxes': 'Податки та Skatteetaten',
+    'unit.housingBank': 'Житло та BankID',
+    'unit.healthcareNo': 'Медицина (Fastlege)',
+    'unit.societyNo': 'Суспільство Норвегії',
+    
     // Legacy
     'unit.phrases': 'Фрази',
     'unit.travel': 'Подорожі',

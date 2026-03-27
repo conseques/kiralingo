@@ -4,12 +4,14 @@ import { UNITS_A2 } from './lessons-a2.js';
 import { UNITS_B1 } from './lessons-b1.js';
 import { UNITS_B2 } from './lessons-b2.js';
 import { UNITS_C1 } from './lessons-c1.js';
+import { store } from '../store.js';
 
 export const ALL_UNITS = [...UNITS_A1, ...UNITS_A2, ...UNITS_B1, ...UNITS_B2, ...UNITS_C1];
 
 // Legacy export (filtered by difficulty)
 export function getUnitsForLevel(level) {
-  return ALL_UNITS.filter(u => u.level === level);
+  const target = store.state?.targetLang || 'en';
+  return ALL_UNITS.filter(u => u.level === level && (!u.onlyLang || u.onlyLang === target));
 }
 
 // Kept for backward compat — returns units for the store's current difficulty

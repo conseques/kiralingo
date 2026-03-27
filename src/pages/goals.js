@@ -21,10 +21,6 @@ export function renderGoals() {
   hero.className = 'animate-fade-in-up';
   hero.style.cssText = 'position:relative;margin-bottom:3rem;';
   hero.innerHTML = `
-    <div style="position:absolute;top:-3rem;right:-1rem;width:8rem;height:8rem;z-index:10;
-      transition:transform 0.3s;" onmouseenter="this.style.transform='scale(1.05)'" onmouseleave="this.style.transform='scale(1)'">
-      <img src="/images/kira-goals.webp" alt="Kira" style="width:100%;height:100%;drop-shadow:0 8px 20px rgba(0,0,0,0.15);object-fit:contain;" />
-    </div>
     <div class="card" style="text-align:center;position:relative;overflow:hidden;padding:2rem;">
       <div style="position:absolute;top:0;left:0;right:0;height:0.25rem;background:var(--gradient-tertiary);"></div>
       <div style="display:flex;flex-direction:column;align-items:center;">
